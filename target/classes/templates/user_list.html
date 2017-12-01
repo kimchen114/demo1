@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+<title >Layout</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
+<title>Insert title here</title>
+
+
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+<link rel="stylesheet" th:href="@{/css/font-awesome.min.css}"/>
+<link rel="stylesheet" th:href="@{/plugins/jqgrid/ui.jqgrid-bootstrap.css}"/>
+<link rel="stylesheet" th:href="@{/plugins/ztree/css/metroStyle/metroStyle.css}"/>
+<link rel="stylesheet" th:href="@{/css/main.css}"/>
+<link rel="stylesheet" th:href="@{/css/loanorder.css}"/>
+<script th:src="@{/libs/jquery.min.js}"></script>
+<script th:src="@{/plugins/layer/layer.js}"></script>
+<script th:src="@{/libs/bootstrap.min.js}"></script>
+<script th:src="@{/libs/vue.min.js}"></script>
+<script th:src="@{/plugins/jqgrid/grid.locale-cn.js}"></script>
+<script th:src="@{/plugins/jqgrid/jquery.jqGrid.min.js}"></script>
+<script th:src="@{/plugins/ztree/jquery.ztree.all.min.js}"></script>
+<script th:src="@{/js/common.js}"></script>
+
+
+
+
+
+
+<!-- <script type="text/javascript" th:src="@{/js/jquery.js}"></script> -->
+<link type="text/css" rel="stylesheet" th:href="@{/css/user.css}"/>	
+
+</head>
+<body>
+	<div id="rrapp">
+		<div class="grid-btn">
+			时间 :<input type="date"  v-on:keyup.enter="query" v-model="queryDto.startTime" />至
+					<input type="date"   v-on:keyup.enter="query" v-model="queryDto.endTime"/>&nbsp;&nbsp;&nbsp;&nbsp;
+					客户名:<input type="text"  v-on:keyup.enter="query" v-model="queryDto.username"/>
+		<a class="btn btn-default" v-on:click="query">搜索</a>
+		<a  class="btn btn-default" v-on:click="resetquery">重置</a>
+		<a  class="btn btn-default" href="/user/edit">新增</a>
+		<a  class="btn btn-default" v-on:click="exportlist">导出列表</a>
+		<a  class="btn btn-default" href="/logout">注销</a>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</div>
+	    <table id="jqGrid"></table>
+	    <div id="jqGridPager"></div>
+    </div>
+		
+<script type="text/javascript" th:src="@{/js/user.js}"></script> 		
+</body>
+</html>

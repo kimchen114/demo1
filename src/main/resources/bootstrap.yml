@@ -1,0 +1,43 @@
+spring:
+  application:
+    name: ms-demo
+  http:   
+    encoding:
+      charset: UTF-8 
+      force: true
+      enabled: true
+
+    multipart:
+      max-file-size: 30MB        
+  thymeleaf:
+   cache: false
+   prefix: classpath:/templates/
+   suffix: .html
+   encoding: UTF-8
+   enabled: true
+   content-type: text/html
+   mode: HTML5 
+   
+server:
+  port: 8762  
+  tomcat:
+    uri-encoding: UTF-8
+    
+
+# Mybatis 配置
+mybatis:
+  typeAliasesPackage: com.example.ms_demo.domain
+  mapperLocations: classpath:mapper/*Mapper.xml
+  
+
+#分页插件配置
+pagehelper:
+  helperDialect: mysql
+  #reasonable：分页合理化参数，默认值为false。当该参数设置为 true 时，pageNum<=0 时会查询第一页， pageNum>pages（超过总数时），会查询最后一页。默认false 时，直接根据参数进行查询。
+  reasonable: false
+  supportMethodsArguments: true
+  params: count=countSql  
+
+
+
+

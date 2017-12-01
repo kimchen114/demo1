@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>  
+<configuration>  
+    <properties>  
+        <!-- 文件输出格式 -->  
+        <property name="PATTERN">%d{yyyy-MM-dd HH:mm} *** [%-5level] [%thread] %c [%L] -| %m%n</property>  
+    </properties>  
+  
+    <appenders>  
+        <Console name="CONSOLE" target="system_out">  
+            <PatternLayout pattern="${PATTERN}" />  
+        </Console>  
+    </appenders>  
+      
+    <loggers>  
+    	<root name="com.netflix.discovery.shared" level="INFO" > </root> 
+    	<root name="org.springframework" level="INFO"></root>
+    	<root name="org.apache.http." level="INFO"></root>
+    	<root name="log4j.logger.org.apache.ibatis" level="debug"></root>
+        <root level="debug">  
+            <appenderref ref="CONSOLE" />  
+        </root> 
+       
+        
+         
+    </loggers>  
+  
+</configuration>

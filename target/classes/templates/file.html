@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8"></meta>
+<title>Insert title here</title>
+<script type="text/javascript" th:src="@{/js/jquery.js}"></script>
+</head>
+
+
+
+	<body>
+		<!-- <input th:text="${student}"/> -->
+		文件上传页面
+		<form action="/file/upload" method="post" enctype="multipart/form-data" >
+		
+			上传文件：<input type="file" name="mfile"/><br/>
+			<!-- <img alt="11" th:src="@{/file/download?fileId=4}"  height="100" width="100" /> -->
+			
+			<button type="button" onclick="download()" >下载</button>
+			<button type="button" onclick="picture()" >查看图片</button>
+			
+			<button type="submit">提交</button>
+		
+		</form>
+	</body>
+	
+	<script type="text/javascript">
+		 function download(){
+			 var date = {
+					 "fileId":4	 
+			 }
+			 window.open("file/download?fileId=4");
+	/* 		 $.get("/file/download",date, function(){
+	               
+	            }); */
+			 
+		 }
+		 function picture(){
+			 
+			 window.open ('login.html', 'newwindow', 'height=400, width=400, top=400, left=400, toolbar=no, menubar=no,  resizable=no scrollbars=no, resizable=no,location=no, status=no')
+			 
+		 }
+	
+	
+	</script>
+	
+	
+	
+</html>

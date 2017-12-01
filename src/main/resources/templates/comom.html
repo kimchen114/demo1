@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+<title >Layout</title>
+<script type="text/javascript" th:src="@{/js/jquery.js}"></script>
+<script type="text/javascript" th:src="@{/js/user.js}"></script>
+<script type="text/javascript" th:src="@{/js/ali.js}"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
+</head>
+
+	<body>
+	<tbody th:fragment="userlist" align="center" id="userlist">
+	  <tr th:each="use,ind : ${list}" >
+        <td th:text="${use['id']}">Onions</td>
+	    <td th:text="${use['userName']}">Onions</td>
+	    <td th:text="${use['phone']}">2.41</td>
+	    <td th:text="${use['age']}">yes</td>  
+	    <td th:text="${use['creatTime']}">yes</td>  
+      </tr>
+	    
+	</tbody>
+	
+	<div th:fragment="ali" th:text="${htmls}">
+	  
+	    
+	</div>
+
+	
+
+
+	</body>
+</html>

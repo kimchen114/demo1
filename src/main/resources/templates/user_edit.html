@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" content="text/html;charset=UTF-8" ></meta>
+<title>Insert title here</title>
+
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+<script th:src="@{/libs/jquery.min.js}"></script>
+<script th:src="@{/libs/bootstrap.min.js}"></script>
+<script th:src="@{/libs/vue.min.js}"></script>
+<script th:src="@{/plugins/layer/layer.js}"></script>
+<script th:src="@{/plugins/jqgrid/jquery.jqGrid.min.js}"></script>
+<script th:src="@{/js/common.js}"></script>
+</head>
+
+
+
+	<body>
+	<div id="rrapp">
+		<form th:action="@{/user/update}" method="post" enctype="application/json"  >
+	  		<table style="width: 800px;height: 200px; "  >
+	  			<tr style="display: none;">
+	  			<td>id: <input  v-model="user.id"  name="id"/>
+	  			</td>
+	  			</tr>
+	  			<tr><td>姓名: <input v-model="user.username" width="30%" name="username" /></td>
+	  			</tr>
+	  			<tr><td>电话: <input  v-model="user.phone" width="30%" name="phone" id="phone"/></td>
+	  			</tr>
+	  			<tr><td> 年龄: <input  v-model="user.age" width="20%" name="age" /></td>
+	  			</tr>
+	  		
+	  		</table>
+	  	
+	  	
+		  
+    	
+			
+			
+		
+			<button type="button" class="btn btn-default" v-on:click="updateOrAdd">提交</button>
+			<input type="button" class="btn btn-default" value="返回" onclick="history.go(-1)"/>
+		</form>
+</div>
+	
+<script type="text/javascript" th:src="@{/js/user_edit.js}"></script> 		
+</body>
+</html>
