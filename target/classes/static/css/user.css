@@ -21,3 +21,10 @@ table.imagetable td {
 	border-style: solid;
 	border-color: #999999;
 }
+#rrapp{
+	position:absolute;
+    left:100px;
+    top:70px;
+	width: 1700px;
+	
+}
