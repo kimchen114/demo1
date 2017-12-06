@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
 <head>
-<title >Layout</title>
+<title >用户首页</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
 <title>Insert title here</title>
@@ -32,7 +32,10 @@
 
 </head>
 <body>
+	
 	<div id="rrapp">
+	
+	
 		<div class="grid-btn">
 			时间 :<input type="date"  v-on:keyup.enter="query" v-model="queryDto.startTime" />至
 				<input type="date"   v-on:keyup.enter="query" v-model="queryDto.endTime"/>&nbsp;&nbsp;&nbsp;&nbsp;

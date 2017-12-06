@@ -28,3 +28,13 @@ table.imagetable td {
 	width: 1700px;
 	
 }
+
+.main-header{
+/* 	background:blue;*/
+	position: absolute; 
+	top:3px;
+	width: 1600px;
+	height: 100px;
+}
+
+
