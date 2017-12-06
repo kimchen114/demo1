@@ -6,7 +6,7 @@ spring:
       charset: UTF-8 
       force: true
       enabled: true
-
+      
     multipart:
       max-file-size: 30MB        
   thymeleaf:

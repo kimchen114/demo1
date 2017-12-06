@@ -11,6 +11,20 @@
 <script th:src="@{/plugins/layer/layer.js}"></script>
 <script th:src="@{/plugins/jqgrid/jquery.jqGrid.min.js}"></script>
 <script th:src="@{/js/common.js}"></script>
+<style>
+div {
+    background-color: lightgrey;
+    width: 500px;
+    border: 5px solid green;
+    padding: 25px;
+    margin: 25px;
+}
+div{
+    position:absolute;
+    left:700px;
+    top:150px;
+}
+</style>
 </head>
 
 
@@ -21,7 +35,6 @@
 	  		<table style="width: 800px;height: 200px; disabled=disabled;"  >
 	  			<tr >
 	  				<td>id: <input  v-model="user.id"  name="id" readonly="readonly" /></td>
-	  				<td>id: <input  th:value="${param.userId}"  name="id" readonly="readonly" /></td>
 	  			
 	  			</tr>
 	  			<tr><td>姓名: <input v-model="user.username" width="30%" name="username" readonly="readonly" /></td>

@@ -85,10 +85,13 @@ var vm = new Vue({
 //			$.get("/user/edit?userId="+id, function(r){
 //			});
 		},
-		exportlist: function(){
-			window.location.href="/user/export";
-		},
-		
+//		exportlist: function(){
+//			window.location.href="/user/export";
+//		},
+//		exportword: function(){
+//			window.location.href="/user/exportword";
+//		},
+//		
 		todelete: function(id){
 			confirm("你确定要删除吗？",function(){
 				$.ajax({

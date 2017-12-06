@@ -11,6 +11,20 @@
 <script th:src="@{/plugins/layer/layer.js}"></script>
 <script th:src="@{/plugins/jqgrid/jquery.jqGrid.min.js}"></script>
 <script th:src="@{/js/common.js}"></script>
+<style>
+div {
+    background-color: lightgrey;
+    width: 500px;
+    border: 5px solid green;
+    padding: 25px;
+    margin: 25px;
+}
+div{
+    position:absolute;
+    left:700px;
+    top:150px;
+}
+</style>
 </head>
 
 
@@ -32,12 +46,6 @@
 	  		
 	  		</table>
 	  	
-	  	
-		  
-    	
-			
-			
-		
 			<button type="button" class="btn btn-default" v-on:click="updateOrAdd">提交</button>
 			<input type="button" class="btn btn-default" value="返回" onclick="history.go(-1)"/>
 		</form>

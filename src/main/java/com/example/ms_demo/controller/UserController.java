@@ -2,7 +2,9 @@ package com.example.ms_demo.controller;
 
 import java.io.BufferedOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -11,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,12 +25,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.ms_demo.domain.User;
 import com.example.ms_demo.service.UserService;
 import com.example.ms_demo.util.ExcelWriter;
 import com.example.ms_demo.util.RestResult;
+import com.example.ms_demo.util.XwpfTUtil;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 
@@ -171,7 +177,38 @@ public class UserController extends BaseController{
 	}
 	
 	
-	
+	/**
+	 * 导出word合同(抵押)
+	 */
+	@RequestMapping(value = { "/exportword" }, method = RequestMethod.GET)
+	public void exportApplyForm( String id,  HttpServletResponse response)  throws Exception {
+		
+		SimpleDateFormat fomt2 = new SimpleDateFormat("yyyy-MM-dd");
+		
+		XwpfTUtil xwpfTUtil = new XwpfTUtil();
+		User user = new User();
+		XWPFDocument doc;
+		String fileNameInResource = "static/word/lendApplyTable6.docx";
+		InputStream is;
+		/* is = new FileInputStream(filePath); */
+		is = getClass().getClassLoader().getResourceAsStream(fileNameInResource);
+		doc = new XWPFDocument(is);
+		
+		service.exportContractInfoWord(doc, user, xwpfTUtil);
+		
+		OutputStream os = response.getOutputStream();
+		
+		response.setContentType("application/vnd.ms-excel");
+		response.setHeader("Content-disposition","attachment;filename=123.docx");
+		
+		doc.write(os);
+		
+		xwpfTUtil.close(os);
+		xwpfTUtil.close(is);
+		
+		os.flush();
+		os.close();
+	}
 	
 	
 }
