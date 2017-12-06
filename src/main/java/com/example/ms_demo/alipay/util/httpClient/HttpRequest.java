@@ -2,8 +2,6 @@ package com.example.ms_demo.alipay.util.httpClient;
 
 import org.apache.commons.httpclient.NameValuePair;
 
-import com.example.ms_demo.alipay.config.AlipayConfig;
-
 /* *
  *类名：HttpRequest
  *功能：Http请求对象的封装
@@ -60,9 +58,9 @@ public class HttpRequest {
     /**
      * 请求返回的方式
      */
-    private String resultType = AlipayConfig.BYTES;
+    private HttpResultType resultType = HttpResultType.BYTES;
 
-    public HttpRequest(String resultType) {
+    public HttpRequest(HttpResultType resultType) {
         super();
         this.resultType = resultType;
     }
@@ -145,11 +143,11 @@ public class HttpRequest {
         this.charset = charset;
     }
 
-    public String getResultType() {
+    public HttpResultType getResultType() {
         return resultType;
     }
 
-    public void setResultType(String resultType) {
+    public void setResultType(HttpResultType resultType) {
         this.resultType = resultType;
     }
 

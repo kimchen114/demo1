@@ -21,36 +21,24 @@ package com.example.ms_demo.alipay.config;
  *2、更换浏览器或电脑，重新登录查询。
  */
 
-public interface AlipayConfig {
+public class AlipayConfig {
 
 	//↓↓↓↓↓↓↓↓↓↓请在这里配置您的基本信息↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
 	// 合作身份者ID，以2088开头由16位纯数字组成的字符串
-	String partner = "2088501855506287";
+	public static String partner = "2088501855506287";
 	// 商户的私钥
-	String key = "h87dowkac64huu4o8lon2grbobmzeeb2";
+	public static String key = "h87dowkac64huu4o8lon2grbobmzeeb2";
 
 	//↑↑↑↑↑↑↑↑↑↑请在这里配置您的基本信息↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
 	
 
 	// 调试用，创建TXT日志文件夹路径
-	String log_path = "H:\\";
+	public static String log_path = "H:\\";
 
 	// 字符编码格式 目前支持 gbk 或 utf-8
-	String INPUT_CHARSET = "utf-8";
+	public static String input_charset = "utf-8";
 	
 	// 签名方式 不需修改
-	String sign_type = "MD5";
-	/**
-     * 支付宝提供给商户的服务接入网关URL(新)
-     */
-	String ALIPAY_GATEWAY_NEW = "https://mapi.alipay.com/gateway.do?";
-	String STRING = "STRING";
-	String BYTES = "BYTES";
-	
-	String notify_url = "https://box.51vj.cn:9443/company/alipay/alipay_callback_notify";
-	
-	String return_url = "https://box.51vj.cn:9443/company/alipay/alipay_callback";
-	
-	
-	
+	public static String sign_type = "MD5";
+
 }

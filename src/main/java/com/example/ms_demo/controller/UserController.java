@@ -26,7 +26,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.ms_demo.domain.User;
@@ -102,8 +101,8 @@ public class UserController extends BaseController{
 	@PreAuthorize("hasRole('admin_user')")
 	@ResponseBody
 	public  RestResult update(@RequestBody User user){
-		user.setGmtModified(new Date());
-		service.updateByPrimaryKeySelective(user);
+	  user.setGmtModified(new Date());
+	  service.updateByPrimaryKeySelective(user);
 		return RestResult.succsee();
 	}
 	

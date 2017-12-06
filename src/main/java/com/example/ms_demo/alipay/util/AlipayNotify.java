@@ -12,7 +12,7 @@ import org.slf4j.LoggerFactory;
 import com.example.ms_demo.alipay.config.AlipayConfig;
 import com.example.ms_demo.alipay.sign.MD5;
 
-/**
+/* *
  *类名：AlipayNotify
  *功能：支付宝通知处理类
  *详细：处理支付宝各接口通知返回
@@ -78,7 +78,7 @@ public class AlipayNotify {
         //获得签名验证结果
         boolean isSign = false;
         if(AlipayConfig.sign_type.equals("MD5") ) {
-        	isSign = MD5.verify(preSignStr, sign, AlipayConfig.key, AlipayConfig.INPUT_CHARSET);
+        	isSign = MD5.verify(preSignStr, sign, AlipayConfig.key, AlipayConfig.input_charset);
         }
         return isSign;
     }

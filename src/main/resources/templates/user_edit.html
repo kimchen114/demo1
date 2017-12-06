@@ -34,14 +34,24 @@ div{
 		<form th:action="@{/user/update}" method="post" enctype="application/json"  >
 	  		<table style="width: 800px;height: 200px; "  >
 	  			<tr style="display: none;">
-	  			<td>id: <input  v-model="user.id"  name="id"/>
-	  			</td>
+	  			   <td>
+	  				 id: <input  v-model="user.id"  name="id"/>
+	  			  </td>
 	  			</tr>
-	  			<tr><td>姓名: <input v-model="user.username" width="30%" name="username" /></td>
+	  			<tr>
+	  				<td>
+	  					姓名: <input v-model="user.username" width="30%" name="username" />
+	  				</td>
 	  			</tr>
-	  			<tr><td>电话: <input  v-model="user.phone" width="30%" name="phone" id="phone"/></td>
+	  			<tr>
+	  				<td>
+	  					电话: <input  v-model="user.phone" width="30%" name="phone" id="phone"/>
+	  				</td>
 	  			</tr>
-	  			<tr><td> 年龄: <input  v-model="user.age" width="20%" name="age" /></td>
+	  			<tr>
+	  				<td> 
+	  					年龄: <input  v-model="user.age" width="20%" name="age" />
+	  				</td>
 	  			</tr>
 	  		
 	  		</table>

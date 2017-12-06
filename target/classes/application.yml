@@ -6,7 +6,7 @@ spring:
     active: local
 # LOGGING 
 logging:
-  file: D:\\logs\myspringboot.log    #
+  file: logs/myspringboot.log    #
 #  path: 
   level: 
     com.example.ms_demo: debug 

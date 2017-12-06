@@ -1,5 +1,6 @@
 package com.example.ms_demo;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,8 +21,10 @@ public class Test {
 		System.err.println(token.length());
 //		System.out.println(new BCryptPasswordEncoder().encode("123"));
 		Claims claim =JWTUtil.getTokenClaims(token);
-		System.out.println(claim.values());
+		System.out.println(claim);
 		
 		
+//		Date date = new Date(claim.getExpiration());
+		System.out.println(claim.getId());
 	}
 }
