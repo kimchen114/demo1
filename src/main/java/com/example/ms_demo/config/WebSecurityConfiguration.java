@@ -1,7 +1,5 @@
 package com.example.ms_demo.config;
 
-import javax.servlet.Filter;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +14,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import com.example.ms_demo.service.SysUserService;
-
 
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)//启用Security注解，例如最常用的@PreAuthorize
@@ -30,8 +26,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     private  LoginSuccessHandler successHandler;
     @Autowired
     private  LoginFailureHandler failureHandler;
-    @Autowired
-    private  SysUserService sysUserService;
+//    @Autowired
+//    private  SysUserService sysUserService;
     @Autowired
     private  BeforeLoginFilter beforeLoginFilter;
     
@@ -71,12 +67,12 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 		return new BCryptPasswordEncoder();
 	}
    
-    @Bean
-    public Filter loginFilter() {
-    	LoginAuthenticationFilter filter = new LoginAuthenticationFilter();
-        filter.setSysUserService(sysUserService);
-        return filter;
-    }
+//    @Bean
+//    public Filter loginFilter() {
+//    	LoginAuthenticationFilter filter = new LoginAuthenticationFilter();
+//        filter.setSysUserService(sysUserService);
+//        return filter;
+//    }
     
     
 }
