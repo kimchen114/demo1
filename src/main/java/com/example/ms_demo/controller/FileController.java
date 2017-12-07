@@ -26,54 +26,52 @@ import com.example.ms_demo.service.FileService;
 @Controller
 @RequestMapping("/file")
 public class FileController {
-	
-	
-	@Autowired
-	private FileService fileService;
-	
-	@PostMapping("upload")
-	public @ResponseBody Map<String,Object> upload(MultipartFile mfile) throws IOException {
-		
-		String fileName = mfile.getOriginalFilename();
-		String fileExtension = FilenameUtils.getExtension(fileName);
-		Long size = mfile.getSize();
-		String path = "D://app/upload/";
-		System.out.println(fileName);
-		LocalDate now =  LocalDate.now();
-		path=path+now.getYear()+java.io.File.separator+now.getMonthValue()+java.io.File.separator+now.getDayOfMonth();
-		java.io.File nfile=new java.io.File(path);
-		if(!nfile.exists()) {
-			nfile.mkdirs();
-		}
-		path=path+java.io.File.separator+fileName;
-		java.io.File wfile=new java.io.File(path);
-		FileUtils.copyInputStreamToFile(mfile.getInputStream(), wfile);
-		
-		UserFile userFile = new UserFile();
-		userFile.setName(fileName);
-		userFile.setSize(size.toString());
-		userFile.setUrl(path);
-		userFile.setGmtCreate(new Date());
-		userFile.setType(fileExtension);
-		fileService.save(userFile);
-		return new HashMap<String,Object>();
-	}
-	
-	
-	
-	@GetMapping
-	public String tofile() {
-		
-		return "file";
-	}
-	
-	@GetMapping("download")
-	public void download(Long fileId,HttpServletResponse response) throws IOException {
-		
-		UserFile userFile = fileService.getById(fileId);
-		
+    
+    @Autowired
+    private FileService fileService;
+    
+    @PostMapping("upload")
+    public @ResponseBody Map<String, Object> upload(MultipartFile mfile) throws IOException {
+        
+        String fileName = mfile.getOriginalFilename();
+        String fileExtension = FilenameUtils.getExtension(fileName);
+        Long size = mfile.getSize();
+        String path = "D://app/upload/";
+        System.out.println(fileName);
+        LocalDate now = LocalDate.now();
+        path = path + now.getYear() + java.io.File.separator + now.getMonthValue() + java.io.File.separator
+                + now.getDayOfMonth();
+        java.io.File nfile = new java.io.File(path);
+        if (!nfile.exists()) {
+            nfile.mkdirs();
+        }
+        path = path + java.io.File.separator + fileName;
+        java.io.File wfile = new java.io.File(path);
+        FileUtils.copyInputStreamToFile(mfile.getInputStream(), wfile);
+        
+        UserFile userFile = new UserFile();
+        userFile.setName(fileName);
+        userFile.setSize(size.toString());
+        userFile.setUrl(path);
+        userFile.setGmtCreate(new Date());
+        userFile.setType(fileExtension);
+        fileService.save(userFile);
+        return new HashMap<String, Object>();
+    }
+    
+    @GetMapping
+    public String tofile() {
+        
+        return "file";
+    }
+    
+    @GetMapping("download")
+    public void download(Long fileId, HttpServletResponse response) throws IOException {
+        
+        UserFile userFile = fileService.getById(fileId);
+        
         response.addHeader("Content-Length", userFile.getSize());
-
+        
         String filename = userFile.getName();
         response.addHeader("Content-Disposition", "attachment;filename=" + filename);
         
@@ -81,8 +79,7 @@ public class FileController {
         response.setContentType("application/octet-stream;charset=UTF-8");
         
         FileUtils.copyFile(new File(userFile.getUrl()), op);
-		
-	}
-	
-	
+        
+    }
+    
 }

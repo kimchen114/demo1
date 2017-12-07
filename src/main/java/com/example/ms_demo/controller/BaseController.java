@@ -7,42 +7,27 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import com.example.ms_demo.domain.UserDetail;
 
 public class BaseController {
-
-	public UserDetail getManagerUserDetails() {
-		Authentication authentication=SecurityContextHolder.getContext().getAuthentication();
-		UserDetail userDetail = null;
-		if(authentication != null &&authentication.isAuthenticated() &&
-				!(authentication instanceof AnonymousAuthenticationToken)){
-			userDetail = (UserDetail) authentication.getPrincipal();
-			return userDetail;
-		}else{
-			return userDetail;
-		}
-	}
-	
-	public String getUserName() {
-		Authentication authentication=SecurityContextHolder.getContext().getAuthentication();
-		UserDetail userDetail = null;
-		if(authentication != null &&authentication.isAuthenticated() &&
-				!(authentication instanceof AnonymousAuthenticationToken)){
-			userDetail = (UserDetail) authentication.getPrincipal();
-			return userDetail.getUsername();
-		}else{
-			return null;
-		}
-	}
-	
-	public Integer getUserId() {
-		Authentication authentication=SecurityContextHolder.getContext().getAuthentication();
-		UserDetail userDetail = null;
-		if(authentication != null &&authentication.isAuthenticated() &&
-				!(authentication instanceof AnonymousAuthenticationToken)){
-			userDetail = (UserDetail) authentication.getPrincipal();
-			return userDetail.getUserId();
-		}else{
-			return null;
-		}
-	}
-	
-	
+    
+    public UserDetail getManagerUserDetails() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        UserDetail userDetail = null;
+        if (authentication != null && authentication.isAuthenticated()
+                && !(authentication instanceof AnonymousAuthenticationToken)) {
+            userDetail = (UserDetail) authentication.getPrincipal();
+            return userDetail;
+        } else {
+            return userDetail;
+        }
+    }
+    
+    public String getUserName() {
+        UserDetail userDetail = (UserDetail) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        return userDetail.getUsername();
+    }
+    
+    public Integer getUserId() {
+        UserDetail userDetail = (UserDetail) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        return userDetail.getUserId();
+    }
+    
 }

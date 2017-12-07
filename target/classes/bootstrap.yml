@@ -1,23 +1,6 @@
 spring:
   application:
     name: ms-demo
-  http:   
-    encoding:
-      charset: UTF-8 
-      force: true
-      enabled: true
-      
-    multipart:
-      max-file-size: 30MB        
-  thymeleaf:
-   cache: false
-   prefix: classpath:/templates/
-   suffix: .html
-   encoding: UTF-8
-   enabled: true
-   content-type: text/html
-   mode: HTML5 
-   
 server:
   port: 8762  
   tomcat:
@@ -28,6 +11,7 @@ server:
 mybatis:
   typeAliasesPackage: com.example.ms_demo.domain
   mapperLocations: classpath:mapper/*Mapper.xml
+  
   
 
 #分页插件配置

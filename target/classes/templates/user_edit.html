@@ -26,10 +26,7 @@ div{
 }
 </style>
 </head>
-
-
-
-	<body>
+<body>
 	<div id="rrapp">
 		<form th:action="@{/user/update}" method="post" enctype="application/json"  >
 	  		<table style="width: 800px;height: 200px; "  >
@@ -57,9 +54,10 @@ div{
 	  		</table>
 	  	
 			<button type="button" class="btn btn-default" v-on:click="updateOrAdd">提交</button>
+			<button type="submit" class="btn btn-default" >提交</button>
 			<input type="button" class="btn btn-default" value="返回" onclick="history.go(-1)"/>
 		</form>
-</div>
+	</div>
 	
 <script type="text/javascript" th:src="@{/js/user_edit.js}"></script> 		
 </body>

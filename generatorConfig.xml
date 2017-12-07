@@ -31,8 +31,7 @@
 
 		<!-- <table tableName="rule" domainObjectName="Rule">
 			<generatedKey column="id" sqlStatement="MySql" identity="true" />
-			<columnOverride column="effect" javaType="java.lang.String" jdbcType="VARCHAR" />
-			<columnOverride column="detail" javaType="java.lang.String" jdbcType="VARCHAR" />
+			<columnOverride column="detail" property="detail" javaType="java.lang.String" jdbcType="VARCHAR" />
 		</table> -->
 		
 		<table tableName="data" domainObjectName="Data">
