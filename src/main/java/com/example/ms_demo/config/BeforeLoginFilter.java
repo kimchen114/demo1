@@ -6,8 +6,6 @@ import java.util.List;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,10 +17,8 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Service;
-import org.springframework.web.filter.GenericFilterBean;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import com.example.ms_demo.domain.SysUser;
 import com.example.ms_demo.domain.UserDetail;
 import com.example.ms_demo.service.SysUserService;
 
@@ -34,47 +30,12 @@ public class BeforeLoginFilter extends OncePerRequestFilter {
     @Autowired
     private SysUserService sysUserService;
     
-    // @Override
-    // public void doFilter(ServletRequest request, ServletResponse response,
-    // FilterChain filterChain)
-    // throws IOException, ServletException {
-    // HttpServletRequest httpRequest = (HttpServletRequest) request;
-    //
-    // Cookie[] cookies = httpRequest.getCookies();
-    // if (cookies == null) {
-    // filterChain.doFilter(request, response);
-    // return;
-    // }
-    // for (Cookie cookie : cookies) {
-    // String cookieName = cookie.getName();
-    // if ("token".equals(cookieName)) {
-    // String token = cookie.getValue();
-    // Claims claims = JWTUtil.getTokenClaims(token);
-    // SysUser sysUser =
-    // sysUserService.getById(Integer.parseInt(claims.get("userId").toString()));
-    // List<GrantedAuthority> authorities = new ArrayList<>();
-    // authorities.add(new SimpleGrantedAuthority("ROLE_admin_user"));
-    // authorities.add(new SimpleGrantedAuthority("ROLE_default_user"));
-    // UserDetail userDetail = new UserDetail(sysUser.getUsername(),
-    // sysUser.getPassword(), authorities);
-    // UsernamePasswordAuthenticationToken authentication = new
-    // UsernamePasswordAuthenticationToken(userDetail,
-    // userDetail.getPassword(), userDetail.getAuthorities());
-    // authentication.setDetails(new
-    // WebAuthenticationDetailsSource().buildDetails(httpRequest));
-    // // 将权限写入本次会话
-    // SecurityContextHolder.getContext().setAuthentication(authentication);
-    //
-    // }
-    // }
-    //
-    // // 继续调用 Filter 链
-    // filterChain.doFilter(request, response);
-    // }
+   
     
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
+        
         Cookie[] cookies = request.getCookies();
         if (cookies == null) {
             filterChain.doFilter(request, response);
@@ -85,11 +46,12 @@ public class BeforeLoginFilter extends OncePerRequestFilter {
             if ("token".equals(cookieName)) {
                 String token = cookie.getValue();
                 Claims claims = JWTUtil.getTokenClaims(token);
-                SysUser sysUser = sysUserService.getById(Integer.parseInt(claims.get("userId").toString()));
+                System.out.println("***********************");
+//                SysUser sysUser = sysUserService.getById(Integer.parseInt(claims.get("userId").toString()));
                 List<GrantedAuthority> authorities = new ArrayList<>();
                 authorities.add(new SimpleGrantedAuthority("ROLE_admin_user"));
                 authorities.add(new SimpleGrantedAuthority("ROLE_default_user"));
-                UserDetail userDetail = new UserDetail(sysUser.getUsername(), sysUser.getPassword(), authorities);
+                UserDetail userDetail = new UserDetail(claims.get("username").toString(), "", authorities);
                 UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetail,
                         userDetail.getPassword(), userDetail.getAuthorities());
                 authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));

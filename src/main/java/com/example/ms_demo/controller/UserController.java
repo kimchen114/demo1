@@ -93,7 +93,7 @@ public class UserController extends BaseController {
     @PostMapping(value="update")
     @PreAuthorize("hasRole('admin_user')")
     @ResponseBody
-    public RestResult update( User user) {
+    public RestResult update(@RequestBody User user) {
         user.setGmtModified(new Date());
         service.updateByPrimaryKeySelective(user);
         return RestResult.succsee();
