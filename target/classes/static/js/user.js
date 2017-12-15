@@ -93,6 +93,7 @@ var vm = new Vue({
 //		},
 //		
 		todelete: function(id){
+//			alert('操作成功');
 			confirm("你确定要删除吗？",function(){
 				$.ajax({
 					type: "POST",
@@ -100,7 +101,7 @@ var vm = new Vue({
 		            contentType: "application/json",
 				    data: JSON.stringify(id),
 				    success: function(r){
-						if(r.code == 0){
+						if(r.isSuccess){
 							alert('操作成功');
 							vm.reload();
 							return;

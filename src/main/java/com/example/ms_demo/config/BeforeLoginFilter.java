@@ -46,6 +46,7 @@ public class BeforeLoginFilter extends OncePerRequestFilter {
             if ("token".equals(cookieName)) {
                 String token = cookie.getValue();
                 Claims claims = JWTUtil.getTokenClaims(token);
+                
                 System.out.println("***********************");
 //                SysUser sysUser = sysUserService.getById(Integer.parseInt(claims.get("userId").toString()));
                 List<GrantedAuthority> authorities = new ArrayList<>();
@@ -57,7 +58,7 @@ public class BeforeLoginFilter extends OncePerRequestFilter {
                 authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                 // 将权限写入本次会话
                 SecurityContextHolder.getContext().setAuthentication(authentication);
-                
+                break;
             }
         }
         

@@ -5,8 +5,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
@@ -107,6 +109,32 @@ public class UserController extends BaseController {
         service.save(user);
         return RestResult.succsee();
     }
+    
+    
+    @GetMapping("batchadd")
+    @ResponseBody
+    public RestResult batchAdd() {
+       
+        for (int i = 0; i < 30000000; i=i+9000) {
+            List<User> list =new ArrayList<User>();
+            for (int j = 0; j < 9000; j++) {
+                User user=new User();
+                user.setAge(100);
+                user.setUsername("姓名"+j);
+                user.setGmtModified(new Date());
+                user.setGmtCreate(new Date());
+                user.setPhone("123");
+                user.setIsDeleted(0);
+                list.add(user);
+            }
+            service.batchAdd(list);
+        }
+        return RestResult.succsee();
+    }
+    
+    
+    
+    
     
     @GetMapping("list")
     @ResponseBody

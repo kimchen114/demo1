@@ -18,6 +18,7 @@ import com.example.ms_demo.domain.User;
 import com.example.ms_demo.domain.UserCriteria;
 import com.example.ms_demo.domain.UserCriteria.Criteria;
 import com.example.ms_demo.mapper.UserMapper;
+import com.example.ms_demo.util.DateUtil;
 import com.example.ms_demo.util.XwpfTUtil;
 
 @Service
@@ -37,20 +38,10 @@ public class UserService {
 			criteria.andUsernameLike("%"+username+"%");
 		}
 		if(StringUtils.isNotBlank(startTime)) {
-			
-			try {
-				criteria.andGmtCreateGreaterThanOrEqualTo(DateUtils.parseDate(startTime,"yyyy-MM-dd"));
-			} catch (ParseException e) {
-				e.printStackTrace();
-			}
-			
+				criteria.andGmtCreateGreaterThanOrEqualTo(DateUtil.parse(startTime));
 		}
 		if(StringUtils.isNotBlank(endTime)) {
-			try {
-				endTime=LocalDate.parse(endTime).plusDays(1).toString();
-				criteria.andGmtCreateLessThanOrEqualTo(DateUtils.parseDate(endTime,"yyyy-MM-dd"));
-			} catch (Exception e) {
-			}
+				criteria.andGmtCreateLessThanOrEqualTo(DateUtil.parse(endTime+" 23:59"));
 		}
 		
 		List<User> list=userMapper.selectByExample(example);
@@ -87,5 +78,10 @@ public class UserService {
 		xwpfTUtil.replaceInTable(doc, params);
 		
 	}
+
+    public int batchAdd(List<User> list) {
+        
+        return userMapper.batchAdd(list);
+    }
 	
 }

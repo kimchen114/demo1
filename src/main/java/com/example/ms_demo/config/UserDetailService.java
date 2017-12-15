@@ -33,8 +33,8 @@ public class UserDetailService implements UserDetailsService {
         }
         
         List<GrantedAuthority> authorities = new ArrayList<>();
-        authorities.add(new SimpleGrantedAuthority("ROLE_admin_user"));
-        authorities.add(new SimpleGrantedAuthority("ROLE_default_user"));
+        authorities.add(new SimpleGrantedAuthority("ROLE_admin"));
+        authorities.add(new SimpleGrantedAuthority("ROLE_user"));
         UserDetail userDetail = new UserDetail(username, sysUser.getPassword(), authorities);
         userDetail.setUserId(sysUser.getId());
         return userDetail;

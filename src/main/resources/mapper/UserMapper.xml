@@ -112,6 +112,24 @@
       #{isDeleted,jdbcType=INTEGER}, #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}
       )
   </insert>
+  
+  <insert id="batchAdd" >
+   
+    insert into user (username, phone, age, 
+      is_deleted, gmt_create, gmt_modified
+      )values
+      <foreach collection="list" separator="," item="user">
+	      (#{user.username,jdbcType=VARCHAR}, #{user.phone,jdbcType=VARCHAR}, #{user.age,jdbcType=INTEGER}, 
+	      #{user.isDeleted,jdbcType=INTEGER}, #{user.gmtCreate,jdbcType=TIMESTAMP}, #{user.gmtModified,jdbcType=TIMESTAMP}
+	      )
+      </foreach>
+     
+  </insert>
+  
+  
+  
+  
+  
   <insert id="insertSelective" parameterType="com.example.ms_demo.domain.User">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()

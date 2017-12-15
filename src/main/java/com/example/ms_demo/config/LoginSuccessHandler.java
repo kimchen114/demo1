@@ -24,7 +24,7 @@ import com.example.ms_demo.service.SysUserService;
 @Service
 public class LoginSuccessHandler implements AuthenticationSuccessHandler {
     private final static Logger logger = LoggerFactory.getLogger(LoginSuccessHandler.class);
-    private final static int COOKIESSAVETIME = 60 * 60 * 1; // cookie有效时长为一天
+    private final static int COOKIESSAVETIME = 60 * 60 * 24; // cookie有效时长为一天
     
     @Autowired
     private SysUserService sysUserService;

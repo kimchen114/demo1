@@ -28,6 +28,7 @@ public class DataSourceConfig {
         properties.setUsername(env.getProperty("spring.datasource.username"));
         properties.setPassword(env.getProperty("spring.datasource.password"));
         datasource.setPoolProperties(properties);
+//        datasource.s
         return datasource;
     }
     
