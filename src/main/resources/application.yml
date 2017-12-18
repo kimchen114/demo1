@@ -31,6 +31,8 @@ logging:
   
 ---
 spring:
+  config:
+    location: 
   profiles: local
   datasource:
     name: test
@@ -62,7 +64,7 @@ security:
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://aaa:bbb@localhost:8761/eureka/
+      defaultZone: http://aaa:bbb@10.60.50.181:8761/eureka/
 
 ---
 spring:

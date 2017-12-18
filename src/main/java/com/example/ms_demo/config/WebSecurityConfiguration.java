@@ -33,7 +33,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
         http.authorizeRequests()
 //                 .antMatchers("/login/**","/js/**","/css/**","/img/**","/**").permitAll()
-                .antMatchers("/login/**", "/js/**", "/css/**", "/img/**").permitAll().anyRequest().authenticated().and()
+                .antMatchers("/login/**", "/js/**", "/css/**", "/img/**","/**").permitAll().anyRequest().authenticated().and()
                 .formLogin().loginPage("/login").passwordParameter("password").usernameParameter("username").permitAll()
                 .successHandler(successHandler).failureHandler(failureHandler).and().logout().logoutUrl("/logout")
                 .invalidateHttpSession(true).deleteCookies("token").and()

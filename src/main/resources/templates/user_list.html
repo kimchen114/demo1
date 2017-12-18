@@ -11,8 +11,8 @@
 <link rel="stylesheet" th:href="@{/css/font-awesome.min.css}"/>
 <link rel="stylesheet" th:href="@{/plugins/jqgrid/ui.jqgrid-bootstrap.css}"/>
 <link rel="stylesheet" th:href="@{/plugins/ztree/css/metroStyle/metroStyle.css}"/>
-<link rel="stylesheet" th:href="@{/css/main.css}"/>
-<link rel="stylesheet" th:href="@{/css/loanorder.css}"/>
+ <link rel="stylesheet" th:href="@{/css/main.css}"/>
+<link rel="stylesheet" th:href="@{/css/loanorder.css}"/> 
 <script th:src="@{/libs/jquery.min.js}"></script>
 <script th:src="@{/plugins/layer/layer.js}"></script>
 <script th:src="@{/libs/bootstrap.min.js}"></script>
@@ -34,7 +34,42 @@
 <body>
 	
 	<div id="rrapp">
+		<!-- *******************文件上传**************************** -->
+	 <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" id = "myUpload">
+	<!--  <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" id = "myUpload"> -->
+			<div class="modal-dialog" role="document" style="left: 50px;width: 800px">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title" id="myModalLabel">添加附件资料</h4>
+				</div>
+				<div class="modal-body-postpone">
+						<table class="table" border="0px" cellpadding="0">
 	
+							<tr>
+								<td colspan="5"><font size="5" color="blue">附件:</font></td>
+								<td><input type="hidden" id="orderId" v-model="loanUploadDto.orderId"/></td>
+							</tr>
+							<tr>
+								<td colspan="2">附件标题:</td>
+								<td colspan="4"><input type="text" id="fileTitle" v-model="loanUploadDto.fileTitle"/></td>
+							</tr>
+							<tr>
+								<td colspan="2">上传：</td><td colspan="4">
+		        				<input type="file" id="file" accept="image/gif,image/jpeg,image/jpg,image/png" /></td>
+							</tr>
+							<tr>
+								<td colspan="1">预览</td><td colspan="5"><div id="preview" style="width: 400;"></div></td>
+							</tr>
+							<tr>
+								<td colspan="3"></td>
+								<td colspan="3"><button class="close" data-dismiss="modal" v-on:click="upload()" value="提交">提交</button></td>
+							</tr>
+						</table>
+				</div>
+			</div>
+		</div>
+	</div> 
 	
 		<div class="grid-btn">
 			时间 :<input type="date"  v-on:keyup.enter="query" v-model="queryDto.startTime" />至

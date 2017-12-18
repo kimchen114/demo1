@@ -11,6 +11,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.poi.hssf.usermodel.HSSFCell;
@@ -151,11 +152,9 @@ public class UserController extends BaseController {
     
     @GetMapping("getById/{userId}")
     @ResponseBody
-    public Map<String, Object> getById(@PathVariable Integer userId) {
-        Map<String, Object> result = new HashMap<String, Object>();
+    public RestResult getById(@PathVariable Integer userId,HttpServletRequest request) {
         User user = service.getById(userId);
-        result.put("user", user);
-        return result;
+        return RestResult.succsee(user);
     }
     
     @GetMapping("export")

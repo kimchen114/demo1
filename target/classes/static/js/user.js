@@ -14,7 +14,8 @@ $(function () {
 				var button = '';
 				button += '<button class="btn btn-primary"  onclick="vm.look(\''+value+'\')" type="button" data-toggle="modal" data-target=".bs-example-modal-lg">查看</button>&nbsp;';
 				button += '<button class="btn btn-primary"  onclick="vm.toedit(\''+value+'\')" type="button" data-toggle="modal" data-target=".bs-example-modal-lg">修改</button>&nbsp;';
-				button +='<button class="btn btn-primary" onclick="vm.todelete(\''+value+'\')" type="button" data-toggle="modal" data-target="#myUpload">删除</button>&nbsp;'
+				button +='<button class="btn btn-primary" onclick="vm.todelete(\''+value+'\')" type="button" data-toggle="modal" data-target="#delete">删除</button>&nbsp;'
+				button +='<button class="btn btn-primary" onclick="vm.toUploadUI(\''+value+'\')" type="button" data-toggle="modal" data-target="#myUpload">上传文件</button>&nbsp;'
 				return button;
 			}}
         ],
@@ -52,6 +53,7 @@ var vm = new Vue({
 	data:{
 		title: null,
 		queryDto: {},//查询实体
+		loanUploadDto:{},
 	},
 	methods: {
 		query: function () {//点击查询时触发函数
@@ -71,29 +73,21 @@ var vm = new Vue({
 		
 		toedit: function(id){
 			window.location.href="/user/edit?userId="+id;
-//			$.get("/user/edit?userId="+id, function(r){
-//			});
 		},
 		
 		add: function(){
 			window.location.href="/user/edit";
-//			$.get("/user/edit?userId="+id, function(r){
-//			});
 		},
 		look: function(id){
 			window.location.href="/user/userInfo?userId="+id;
-//			$.get("/user/edit?userId="+id, function(r){
-//			});
 		},
-//		exportlist: function(){
-//			window.location.href="/user/export";
-//		},
-//		exportword: function(){
-//			window.location.href="/user/exportword";
-//		},
-//		
+
+		toUploadUI:function(orderId){//点击上传资料时调用
+			$("#file").val("");
+			$("#preview").empty();
+			vm.loanUploadDto.orderId=orderId;
+		},
 		todelete: function(id){
-//			alert('操作成功');
 			confirm("你确定要删除吗？",function(){
 				$.ajax({
 					type: "POST",
@@ -122,6 +116,22 @@ var vm = new Vue({
 });
 
 
+//图片预览
+$(function() {
+    $('[type=file]').change(function(e) {
+        var file = e.target.files[0]
+        preview(file)
+    })
+})
 
+function preview(file) {
+    var img = new Image(), url = img.src = URL.createObjectURL(file)
+    var $img = $(img)
+    img.onload = function() {
+        URL.revokeObjectURL(url)
+        $img.css("width","400PX")
+        $('#preview').empty().append($img)
+    }
+}
 
 
